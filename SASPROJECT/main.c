@@ -25,9 +25,9 @@ int choix;
         printf(" 6 : statistiques.                                                      |\n");
         printf(" 7 : rechercheEtudiantparnom.                                           |\n");
         printf(" 8 : listeEtudiantInscritdansdepartement.                               |\n");
+         printf(" 9 : triDesEtudiants.                               |\n");
 
-
-        printf(" 9 : quitter.                                                      |\n");
+        printf(" 10 : quitter.                                                      |\n");
 
 
             printf("\nChoisir une option : ");
@@ -49,9 +49,6 @@ int choix;
              case 4 :
             supprimerEtudiant() ;
             break;
-
-
-
        case 5:
              moyenneGenerale();
       break;
@@ -68,7 +65,9 @@ int choix;
       case 8 :
              listeEtudiantInscritdansdepartement();
     break;
-
+  case 9 :
+             triDesEtudiants();
+    break;
 
 
 
@@ -76,14 +75,16 @@ int choix;
 
     }
 
-}while(choix!=9 );
+}while(choix!=10 );
 
 
 
 
 
 
-    return 0;}
+    return 0;
+
+    }
 
 
 

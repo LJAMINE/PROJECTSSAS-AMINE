@@ -25,7 +25,7 @@ int nombreEtudiant=0;
     struct Etudiant newEtudiant;
     int indice;
 
-     printf("Entrez le NUm unique : ");
+     printf("Entrez le numero unique : ");
     scanf("%d", &newEtudiant.nemuroUnique);
 
      indice = existeDecontact(newEtudiant.nemuroUnique);
@@ -454,5 +454,89 @@ if (!etudiantTrouve) {
 
 
 }
+
+void triDesEtudiants(){
+ int choix;
+
+  do {
+    printf("1 : Tri alphabetique des etudiants en fonction de leur nom (de A à Z ou de Z a A)\n");
+    printf("2 : Tri des etudiant par moyenne generale.\n");
+    printf("3 : Tri des etudiants selon leur statut de reussite\n");
+    printf("4 :quitter.\n");
+    printf("Choisissez une option : ");
+    scanf("%d", &choix);
+
+    switch(choix) {
+        case 1:
+            triAlphabetique();
+            break;
+
+       case 2:
+             triEtudiantmoyenneGenerale();
+            break;
+  /*
+        case 3:
+
+            tridesEtudiantsReussite( );
+            break;
+
+*/
+        default:
+            printf("Option invalide.\n");
+            break;
+    }
+
+
+  }while(choix!=4);
+
+}
+
+triAlphabetique(){
+   int i , j ;
+  struct Etudiant valeur[10];
+  for (i = 0 ; i< nombreEtudiant-1 ; i++)
+    {
+        for(j=i+1 ; j<nombreEtudiant ;j++)
+        {
+            if(strcmp(etudiants[i].nom,etudiants[j].nom)> 0)
+            {
+                valeur[i]=etudiants[i] ;
+                etudiants[i]=etudiants[j];
+                etudiants[j] = valeur[i];
+            }
+
+        }
+
+}
+for(i=0;i<nombreEtudiant;i++){
+        printf("Nom : %s, Prenom : %s, departement %s ,Moyenne Generale : %.2f\n", etudiants[i].nom, etudiants[i].prenom, etudiants[i].departement.nom,etudiants[i].departement.noteGenerale);
+}
+
+}
+
+triEtudiantmoyenneGenerale(){
+  struct Etudiant valeur[10];
+  int i,j;
+   for (i = 0 ; i< nombreEtudiant-1 ; i++)
+    {
+        for(j=i+1 ; j<nombreEtudiant ;j++)
+        {
+            if( (etudiants[i].departement.noteGenerale) < (etudiants[j].departement.noteGenerale) )
+            {
+                valeur[i]=etudiants[i] ;
+                etudiants[i]=etudiants[j];
+                etudiants[j] = valeur[i];
+            }
+
+        }
+
+}
+for(i=0;i<nombreEtudiant;i++){
+        printf(" Moyenne Generale : %.2f, Nom : %s, Prenom : %s, departement %s \n",etudiants[i].departement.noteGenerale, etudiants[i].nom, etudiants[i].prenom, etudiants[i].departement.nom);
+}
+
+
+}
+
 
 #endif // FUNCTION_H_INCLUDED
