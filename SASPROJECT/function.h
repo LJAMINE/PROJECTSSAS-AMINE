@@ -6,7 +6,7 @@ int nombreEtudiant=0;
 
 
 
- int existeDecontact(char verifieNom[]) {
+ int existeDecontact(int verifieNom[]) {
     for (int i = 0; i < nombreEtudiant; i++) {
         if ( etudiants[i].nemuroUnique == verifieNom ) {
             return i;
@@ -15,85 +15,75 @@ int nombreEtudiant=0;
     return -1;
 }
 
+//ajouter Etudiant
+
  void ajouterEtudiant() {
     struct Etudiant newEtudiant;
     int indice;
 
-   printf("entre le numero unique : ");
+     printf("Entrez le NUm unique : ");
     scanf("%d", &newEtudiant.nemuroUnique);
 
      indice = existeDecontact(newEtudiant.nemuroUnique);
     if (indice != -1) {
-        printf("  contact existe  .\n");
+        printf("etudiant deja existe.\n");
         return;
     }
 
 
-     printf("Entrez  le nom    : ");
+    printf("Entrez le nom : ");
     scanf("%s", newEtudiant.nom);
 
     printf("Entrez le prenom : ");
     scanf("%s", newEtudiant.prenom);
 
-    printf("Entrez la date de naissance   : ");
+    printf("Entrez la date de naissance : ");
     scanf("%s", newEtudiant.date_Naissance);
 
-    //department b structure 2
+    printf("Entrez le nom du departement : ");
+    scanf("%s", newEtudiant.departement.nom);
 
-     printf("maximmum de departement  %d = ", MAX_DEPARTMENTS);
-    scanf("%d", &newEtudiant.nombreDepartements);
+    printf("Entrez la note generale pour le departement %s : ", newEtudiant.departement.nom);
+    scanf("%f", &newEtudiant.departement.noteGenerale);
 
-      if (newEtudiant.nombreDepartements > MAX_DEPARTMENTS) {
-        printf("plein.\n");
-        return;
-    }
-
-    for (int i = 0; i < newEtudiant.nombreDepartements; i++) {
-        printf("  le nom du departement %d : ", i+1);
-        scanf("%s", newEtudiant.departements[i].nom);
-
-        printf("  la note generale   des  departement %s : ", newEtudiant.departements[i].nom);
-        scanf("%f", &newEtudiant.departements[i].noteGenerale);
-    }
-
-     etudiants[nombreEtudiant] = newEtudiant;
+    // Add the new student to the list
+    etudiants[nombreEtudiant] = newEtudiant;
     nombreEtudiant++;
 
-    printf("Etudiant ajoute.\n");
+    printf("etudiant ajoutee.\n");
 }
+
+
+
+//afficher Etudiant
 
  void afficherEtudiant() {
     for (int i = 0; i < nombreEtudiant; i++) {
-        printf(" Numero Unique : %d\n", etudiants[i].nemuroUnique);
-        printf(" Prenom : %s\n", etudiants[i].prenom);
+        printf("numero Unique : %d\n", etudiants[i].nemuroUnique);
+        printf("prenom : %s\n", etudiants[i].prenom);
         printf("Nom : %s\n", etudiants[i].nom);
         printf("Date de Naissance : %s\n", etudiants[i].date_Naissance);
-
-        for (int j=0;j<etudiants[i].nombreDepartements;j++){
-
-            printf("departtements est %s \n  et note general est %f\n",etudiants[i].departements[j].nom,etudiants[i].departements[j].noteGenerale);
-        }
+        printf("DEPARTEMENT : %s\n", etudiants[i].departement.nom);
+        printf("Note genera : %.2f\n", etudiants[i].departement.noteGenerale);
         printf("\n");
     }
 }
 
- void modifierEtudiant() {
+
+//modifier eEtudiant
+
+void modifierEtudiant() {
     int numeroRechercher;
     int etudiantTrouve = 0;
 
-    //  numero unique
-    printf("Entrez le numero unique  : ");
+    printf("Entrez le NUM unique POUR MODIFIER : ");
     scanf("%d", &numeroRechercher);
 
-    // trouve  par lanumero unique
     for (int i = 0; i < nombreEtudiant; i++) {
         if (etudiants[i].nemuroUnique == numeroRechercher) {
-            // etudiant trouvee
             etudiantTrouve = 1;
 
-            printf("nouveau info :\n");
-
-            printf("Nouveau nom : ");
+            printf("new nom : ");
             scanf("%s", etudiants[i].nom);
 
             printf("new prenom : ");
@@ -102,34 +92,30 @@ int nombreEtudiant=0;
             printf("new date de naissance : ");
             scanf("%s", etudiants[i].date_Naissance);
 
-            // modifier depart
-            printf("Modifier les departement :\n");
-            printf("    departement totel %d   : ", MAX_DEPARTMENTS);
-            scanf("%d", &etudiants[i].nombreDepartements);
+            printf("new nom du departement : ");
+            scanf("%s", etudiants[i].departement.nom);
 
-            for (int j = 0; j < etudiants[i].nombreDepartements; j++) {
-                printf("new  nom du departement %d : ", j + 1);
-                scanf("%s", etudiants[i].departements[j].nom);
+            printf("new note generale : ");
+            scanf("%f", &etudiants[i].departement.noteGenerale);
 
-                printf("new  note general   %s : ", etudiants[i].departements[j].nom);
-                scanf("%f", &etudiants[i].departements[j].noteGenerale);
-            }
-
-            printf("bon   modifiecation  .\n");
+            printf("Etudiant modifier.\n");
             break;
         }
     }
 
     if (!etudiantTrouve) {
-        printf(" %d non trouve.\n", numeroRechercher);
+        printf(" %d non trouvee.\n", numeroRechercher);
     }
 }
 
-void supprimerEtudiant() {
+
+//supprimer etidiant
+
+ void supprimerEtudiant() {
     int numeroRechercher;
     int etudiantTrouve = 0;
 
-     printf(" entrere numeroRechercher pour supprimer : ");
+     printf(" entrere numero unique pour supprimer : ");
     scanf("%d", &numeroRechercher);
 
     for (int i = 0; i < nombreEtudiant; i++) {
@@ -153,6 +139,61 @@ void supprimerEtudiant() {
         printf("  %d non trouve.\n", numeroRechercher);
     }
 }
+
+void moyenneGenerale() {
+
+    float totalNotes[MAX_DEPARTMENTS] = {0};  // Stocke la somme note a chaque depar
+    int counts[MAX_DEPARTMENTS] = {0};        // Stocke   nombre etudiant dans chaque depar
+    char departmentNames[MAX_DEPARTMENTS][100];  // Stocke les noms des depar
+    int numDepartments = 0;
+
+ //etudiant
+     for (int i = 0; i < nombreEtudiant; i++) {
+        int found = 0;
+        //  depart deetudiant est deja enrogistree
+        for (int j = 0; j < numDepartments; j++) {
+            if (strcmp(etudiants[i].departement.nom, departmentNames[j]) == 0) {
+                // if   depar est trouve ajoutih a a département
+                totalNotes[j] += etudiants[i].departement.noteGenerale;
+                counts[j]++;
+                found = 1;
+                break;
+            }
+        }
+        // if depart pas trouvee , ajouter a liste
+        if (!found) {
+            strcpy(departmentNames[numDepartments], etudiants[i].departement.nom);
+            totalNotes[numDepartments] = etudiants[i].departement.noteGenerale;
+            counts[numDepartments] = 1;
+            numDepartments++;
+        }
+    }
+
+    // Calcul et affichage des moyennes pour chaque département
+    printf("moye generale par depart :\n");
+    for (int i = 0; i < numDepartments; i++) {
+        printf("departenemet %s : Moyenne = %.2f\n", departmentNames[i], totalNotes[i] / counts[i]);
+    }
+
+    // Calcul de la moyen generale de universite
+    float totalNotesUniversite = 0;
+    int totalCountUniversite = 0;
+    for (int i = 0; i < numDepartments; i++) {
+        totalNotesUniversite += totalNotes[i];  // Total des notes pour l'université entière
+        totalCountUniversite += counts[i];      // Total des étudiants
+    }
+
+    // affichir moyen generale de universite
+    if (totalCountUniversite > 0) {
+        printf("Moyenne genrale de l'universite : %.2f\n", totalNotesUniversite / totalCountUniversite);
+    } else {
+        printf("no etudiat trouve.\n");
+    }
+}
+
+
+
+/*
 
 void moyenneGenerale() {
     float totalNotes[MAX_DEPARTMENTS] = {0};  // TOTAL NOTE POUR CHAQUE DEPATR
@@ -205,7 +246,7 @@ void moyenneGenerale() {
         printf("etudiant ps trouvee.\n");
     }
 }
-
+ /*
 
 void affichTotaletudiant() {
     printf("total etudiants %d\n", nombreEtudiant);

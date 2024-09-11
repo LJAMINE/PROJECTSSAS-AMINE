@@ -14,11 +14,10 @@ int  nemuroUnique ;
  char nom[100];
  char prenom[100];
  char date_Naissance[100];
- char departement[100];
  float noteGenerale;
   int nombreDepartements;
-     struct Departement departements[MAX_DEPARTMENTS];
-};
+  struct Departement departement;
+  };
 
 
 

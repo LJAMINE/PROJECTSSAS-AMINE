@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1726043633 source:c:\users\lenovo\desktop\please\sasproject\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"structure.h"
+	"function.h"
+
+1726043028 c:\users\lenovo\desktop\please\sasproject\structure.h
+
+1726044619 c:\users\lenovo\desktop\please\sasproject\function.h
+

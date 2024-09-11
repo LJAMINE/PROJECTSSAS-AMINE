@@ -52,6 +52,7 @@ int choix;
        case 5:
              moyenneGenerale();
       break;
+       /*
 
      case 6 :
              statistiques();
@@ -60,7 +61,7 @@ int choix;
          case 7 :
              rechercheEtudiantparnom();
     break;
-    /*
+
     */
 
 
