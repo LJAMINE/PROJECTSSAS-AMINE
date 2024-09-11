@@ -18,6 +18,10 @@ int nombreEtudiant=0;
 //ajouter Etudiant
 
  void ajouterEtudiant() {
+       if (nombreEtudiant >= MAX_DEPARTMENTS) {
+        printf("plein.\n");
+        return;
+    }
     struct Etudiant newEtudiant;
     int indice;
 
@@ -136,31 +140,33 @@ void modifierEtudiant() {
         }
     }
     if (!etudiantTrouve) {
-        printf("  %d non trouve.\n", numeroRechercher);
+        printf("%d non trouve.\n", numeroRechercher);
     }
 }
 
 void moyenneGenerale() {
 
-    float totalNotes[MAX_DEPARTMENTS] = {0};  // Stocke la somme note a chaque depar
-    int counts[MAX_DEPARTMENTS] = {0};        // Stocke   nombre etudiant dans chaque depar
-    char departmentNames[MAX_DEPARTMENTS][100];  // Stocke les noms des depar
+
+    float totalNotes[MAX_DEPARTMENTS] = {0};  // Stockiw la somme note f  chaque depar O n3toh 0 a chaques elements
+    int counts[MAX_DEPARTMENTS] = {0};        // Stockeiw   nombre etudiant f chaque depar chaque depar O n3toh 0 a chaques elements
+    char departmentNames[MAX_DEPARTMENTS][100];  // Stockiw les noms des departem
     int numDepartments = 0;
 
- //etudiant
+ //etudiant aziz
      for (int i = 0; i < nombreEtudiant; i++) {
         int found = 0;
         //  depart deetudiant est deja enrogistree
         for (int j = 0; j < numDepartments; j++) {
             if (strcmp(etudiants[i].departement.nom, departmentNames[j]) == 0) {
-                // if   depar est trouve ajoutih a a département
+                // if   depar est trouve ajoutih a a departement
                 totalNotes[j] += etudiants[i].departement.noteGenerale;
+                //incremeter aziz
                 counts[j]++;
                 found = 1;
                 break;
             }
         }
-        // if depart pas trouvee , ajouter a liste
+        // if depart pas trouvee , ajouter a liste aziz 2
         if (!found) {
             strcpy(departmentNames[numDepartments], etudiants[i].departement.nom);
             totalNotes[numDepartments] = etudiants[i].departement.noteGenerale;
@@ -169,23 +175,26 @@ void moyenneGenerale() {
         }
     }
 
-    // Calcul et affichage des moyennes pour chaque département
-    printf("moye generale par depart :\n");
+    // Calcul et affichage des moyennes pour chaque departament
+    printf("moyen generale par depart :\n");
     for (int i = 0; i < numDepartments; i++) {
+            //moyenne=totNote/counts
         printf("departenemet %s : Moyenne = %.2f\n", departmentNames[i], totalNotes[i] / counts[i]);
     }
 
-    // Calcul de la moyen generale de universite
+    //  moy generale universite
     float totalNotesUniversite = 0;
     int totalCountUniversite = 0;
     for (int i = 0; i < numDepartments; i++) {
-        totalNotesUniversite += totalNotes[i];  // Total des notes pour l'université entière
+        totalNotesUniversite += totalNotes[i];  // Total des notes pour universite
         totalCountUniversite += counts[i];      // Total des étudiants
     }
 
-    // affichir moyen generale de universite
+    //   moyen generale de universite
+
+
     if (totalCountUniversite > 0) {
-        printf("Moyenne genrale de l'universite : %.2f\n", totalNotesUniversite / totalCountUniversite);
+        printf("Moyenne genrale de universite : %.2f\n", totalNotesUniversite / totalCountUniversite);
     } else {
         printf("no etudiat trouve.\n");
     }
@@ -193,94 +202,47 @@ void moyenneGenerale() {
 
 
 
-/*
-
-void moyenneGenerale() {
-    float totalNotes[MAX_DEPARTMENTS] = {0};  // TOTAL NOTE POUR CHAQUE DEPATR
-    int counts[MAX_DEPARTMENTS] = {0};        // ETUDUANT CHAQUE DEPART
-    char departmentNames[MAX_DEPARTMENTS][100];  //   department names
-    int numDepartments = 0;
-
-    // tous etudiant
-    for (int i = 0; i < nombreEtudiant; i++) {
-        // chaque depart de etudiants
-        for (int j = 0; j < etudiants[i].nombreDepartements; j++) {
-            int found = 0;
-            // cheki ila depaerement counted ou non
-            for (int k = 0; k < numDepartments; k++) {
-                if (strcmp(etudiants[i].departements[j].nom, departmentNames[k]) == 0) {
-                    // ajouti note aux total du departemen
-                    totalNotes[k] += etudiants[i].departements[j].noteGenerale;
-                    counts[k]++;
-                    found = 1;
-                    break;
-                }
-            }
-            //ila departement no count, ajouti au list
-            if (!found) {
-                strcpy(departmentNames[numDepartments], etudiants[i].departements[j].nom);
-                totalNotes[numDepartments] = etudiants[i].departements[j].noteGenerale;
-                counts[numDepartments] = 1;
-                numDepartments++;
-            }
-        }
-    }
-
-    // moy note pou chaque depart
-    printf("Moyenne genra par departemenr :\n");
-    for (int i = 0; i < numDepartments; i++) {
-        printf("depart %s : moyenne = %.2f\n", departmentNames[i], totalNotes[i] / counts[i]);
-    }
-
-    // calcul moyen de universite
-    float totalNotesUniversite = 0;
-    int totalCountUniversite = 0;
-    for (int i = 0; i < numDepartments; i++) {
-        totalNotesUniversite += totalNotes[i];
-        totalCountUniversite += counts[i];
-    }
-
-    if (totalCountUniversite > 0) {
-        printf("Moyenne gener de universitte : %f\n", totalNotesUniversite / totalCountUniversite);
-    } else {
-        printf("etudiant ps trouvee.\n");
-    }
-}
- /*
 
 void affichTotaletudiant() {
     printf("total etudiants %d\n", nombreEtudiant);
 }
 
-void afficheEudianpardepartmant() {
+
+
+
+
+
+
+
+void afficheEtudiantParDepartement() {
     int counts[MAX_DEPARTMENTS] = {0};
     char departmentNames[MAX_DEPARTMENTS][100];
     int numDepartments = 0;
+     for (int i = 0; i < nombreEtudiant; i++) {
+        int found = 0;
 
-    for (int i = 0; i < nombreEtudiant; i++) {
-        for (int j = 0; j < etudiants[i].nombreDepartements; j++) {
-            int found = 0;
-            for (int k = 0; k < numDepartments; k++) {
-                if (strcmp(etudiants[i].departements[j].nom, departmentNames[k]) == 0) {
-                    counts[k]++;
-                    found = 1;
-                    break;
-                }
+         for (int k = 0; k < numDepartments; k++) {
+            if (strcmp(etudiants[i].departement.nom, departmentNames[k]) == 0) {
+                counts[k]++;
+                found = 1;
+                break;
             }
-            if (!found) {
-                strcpy(departmentNames[numDepartments], etudiants[i].departements[j].nom);
-                counts[numDepartments]++;
-                numDepartments++;
-            }
+        }
+
+         if (!found) {
+            strcpy(departmentNames[numDepartments], etudiants[i].departement.nom);
+            counts[numDepartments] = 1;
+            numDepartments++;
         }
     }
 
-    printf("Nombre etidiant pour chaque depart :\n");
+     printf("Nombre Etudiant pour chaque departement:\n");
     for (int i = 0; i < numDepartments; i++) {
-        printf("%s , %d etuduant\n", departmentNames[i], counts[i]);
+        printf("%s : %d etudiants\n", departmentNames[i], counts[i]);
     }
 }
 
+ /*
 void affichEtudiantseiul(float seuil) {
     printf("etudiant a moy genrale superieur >= %.2f :\n", seuil);
     for (int i = 0; i < nombreEtudiant; i++) {
@@ -295,6 +257,7 @@ void affichEtudiantseiul(float seuil) {
         }
     }
 }
+*/
 void statistiques() {
     int choix;
     float seuil;
@@ -312,11 +275,14 @@ void statistiques() {
         case 2:
             afficheEudianpardepartmant();
             break;
+            /*
         case 3:
             printf("  le seuil  ");
             scanf("%f", &seuil);
             affichEtudiantseiul(seuil);
             break;
+
+            */
 
         default:
             printf("Option invalide.\n");
@@ -325,72 +291,44 @@ void statistiques() {
 }
 
 
-void rechercheEtudiantparnom() {
+void afficheEudianpardepartmant() {
     char nomRecherche[100];
     int etudiantTrouve = 0;
 
-    printf("entrer nom : ");
+    printf("Entrer le nom de etudiant : ");
     scanf("%s", nomRecherche);
 
+
+
     for (int i = 0; i < nombreEtudiant; i++) {
+        // Compare the searched name with the student's name
         if (strcmp(etudiants[i].nom, nomRecherche) == 0) {
-            printf("etudian trouvee :\n");
-            printf("nemuro unique : %d\n", etudiants[i].nemuroUnique);
+            // Student found, display their information
+            printf("etudiant trouvee :\n");
+            printf("numero unique : %d\n", etudiants[i].nemuroUnique);
             printf("prenom : %s\n", etudiants[i].prenom);
-            printf("nom : %s\n", etudiants[i].nom);
-            printf("Date de Naissance : %s\n", etudiants[i].date_Naissance);
+            printf("Nom : %s\n", etudiants[i].nom);
+            printf("Date de naissance : %s\n", etudiants[i].date_Naissance);
+            printf("departement  : %s\n", etudiants[i].departement.nom);
+            printf("Note generale : %.2f\n", etudiants[i].departement.noteGenerale);
 
-            for (int j = 0; j < etudiants[i].nombreDepartements; j++) {
-                printf("depart : %s, Note genrat : %.2f\n", etudiants[i].departements[j].nom, etudiants[i].departements[j].noteGenerale);
-            }
-
-            etudiantTrouve = 1;  //
+            etudiantTrouve = 1;
             break;
         }
     }
 
     if (!etudiantTrouve) {
-        printf("'%s'non trouv.\n", nomRecherche);
+        printf("etudiant avec le nom '%s' non trouvvee.\n", nomRecherche);
     }
 }
 
 
-/*
-void rechercherContacts(){
-char nomRecherche[100];
-  int etudiantTrouve=0;
-
-     printf("entree le nom de etudiant : \n");
-    scanf(" %[^\n]", nomRecherche);
-
-    for (int i = 0; i < nombreEtudiant; i++) {
-        if (strcmp(etudiants[i].nom, nomRecherche) == 0) {
-               printf("etudiant trouvee :\n");
-            printf(" Numero Unique : %d\n", etudiants[i].nemuroUnique);
-        printf(" Prenom : %s\n", etudiants[i].prenom);
-        printf("Nom : %s\n", etudiants[i].nom);
-        printf("Date de Naissance : %s\n", etudiants[i].date_Naissance);
-        printf("Departement : %s\n", etudiants[i].departement);
-        printf("Note Generale : %.2f\n", etudiants[i].noteGenerale);
-        printf("\n");
 
 
 
- contactTrouve = 1;
-            break;
-
-        }
-
-    }
 
 
-    if (!contactTrouve) {
-        printf("contact non trouv.\n");
-    }
 
-
-}
-*/
 #endif // FUNCTION_H_INCLUDED
 
 

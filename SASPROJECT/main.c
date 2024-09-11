@@ -52,20 +52,21 @@ int choix;
        case 5:
              moyenneGenerale();
       break;
-       /*
+
 
      case 6 :
              statistiques();
     break;
+/*
 
          case 7 :
              rechercheEtudiantparnom();
     break;
 
-    */
 
 
 
+*/
 
     }
 
