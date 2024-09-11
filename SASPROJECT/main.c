@@ -57,7 +57,7 @@ int choix;
      case 6 :
              statistiques();
     break;
-/*
+
 
          case 7 :
              rechercheEtudiantparnom();
@@ -66,19 +66,19 @@ int choix;
 
 
 
-*/
+
 
     }
 
-}while(choix!=8 );
+}while(choix!=9 );
 
 
 
 
 
 
-    return 0;
-}
+    return 0;}
+
 
 
 

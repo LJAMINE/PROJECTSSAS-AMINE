@@ -255,45 +255,80 @@ void affichEtudiantseiul(float seuil) {
     }
 }
 
-void affichertroisMeilleuresnotes(){
+void affichertroisMeilleuresnotes() {
+    // tri a bulle methode
+    for (int i = 0; i < nombreEtudiant - 1; i++) {
+        for (int j = 0; j < nombreEtudiant - i - 1; j++) {
+            if (etudiants[j].departement.noteGenerale < etudiants[j + 1].departement.noteGenerale) {
+                struct Etudiant temp = etudiants[j];
+                etudiants[j] = etudiants[j + 1];
+                etudiants[j + 1] = temp;
+            }
+        }
+    }
 
+     //if
+    int top = (nombreEtudiant < 3 )? nombreEtudiant : 3;
+    printf("Les %d meilleurs etudiants sont:\n", top);
 
-for (int i=0;i<nombreEtudiant-1;i++){
+    for (int i = 0; i < top; i++) {
+        printf("Prenom : %s, Nom : %s, Note Generale : %.2f\n",
+               etudiants[i].prenom,
+               etudiants[i].nom,
+               etudiants[i].departement.noteGenerale);
+    }
+}
 
-    for (int j=0;nombreEtudiant-i-1;i++){
+void afficheEtudiantReeussiPardepartemnt() {
+    int counts[MAX_DEPARTMENTS] = {0};
+    char departmentNames[MAX_DEPARTMENTS][100];
+    int numDepartments = 0;
 
-        if (etudiants[j].departement.noteGenerale<etudiants[j+1].departement.noteGenerale){
-
-            struct Etudiant valeur=etudiants[j];
-                            etudiants[j]=etudiants[j+1];
-                            etudiants[j+1]=valeur;
-
-
+    // tous etudiant d'apres aziz formateur
+    for (int i = 0; i < nombreEtudiant; i++) {
+        // n chekiw if departement exist
+        int found = 0;
+        for (int k = 0; k < numDepartments; k++) {
+            if (strcmp(etudiants[i].departement.nom, departmentNames[k]) == 0) {
+                // si departemt, inccremment fach kay passed the test
+                if (etudiants[i].departement.noteGenerale >= 10) {
+                    counts[k]++;
+                }
+                found = 1;
+                break;
+            }
         }
 
-
+        // si departemnt not found , ajouti l la liste
+        if (!found) {
+            strcpy(departmentNames[numDepartments], etudiants[i].departement.nom);
+            if (etudiants[i].departement.noteGenerale >= 10) {
+                counts[numDepartments] = 1;
+            } else {
+                counts[numDepartments] = 0;
+            }
+            numDepartments++;
+        }
     }
 
 
-
-
-}
- int top=nombreEtudiant < 3 ? nombreEtudiant : 3;
-      printf(" les etudiants %d",top);
-
- for (int i=0;i<top;i++){
-        printf("%s prenom et %s nom et %f ",etudiants[i].prenom,etudiants[i].nom,etudiants[i].departement.noteGenerale);
+    printf("nombre  etudiant qui  reussi sur  chaque departement :\n");
+    for (int i = 0; i < numDepartments; i++) {
+        printf("%s : %d etudiants\n", departmentNames[i], counts[i]);
     }
 }
+
 
 void statistiques() {
     int choix;
     float seuil;
 
-    printf("1 :  afficha   nombre total etudiant inscrits\n");
+    printf("1 : afficher   nombre total etudiant inscrits\n");
     printf("2 : Afficher   nombre etudiant dans chaque departement.\n");
     printf("3 : Afficher   etudiant ayant une moyenne genera superieur A un certain seuil\n");
     printf("4 : Afficher les 3 etudiants ayant les meilleures notes.\n");
+    printf("5 :  Afficher le nombre etudiant qui  reussi  dans chaque departement.\n");
+
     printf("Choisissez une option : ");
     scanf("%d", &choix);
 
@@ -314,6 +349,10 @@ void statistiques() {
             affichertroisMeilleuresnotes();
             break;
 
+             case 5:
+                afficheEtudiantReeussiPardepartemnt();
+                break;
+
 
 
         default:
@@ -324,49 +363,67 @@ void statistiques() {
 
 
 void afficheEudianpardepartmant() {
-    char nomRecherche[100];
-    int etudiantTrouve = 0;
+    int counts[MAX_DEPARTMENTS] = {0};
+    char departmentNames[MAX_DEPARTMENTS][100];
+    int numDepartments = 0;
 
-    printf("Entrer le nom de etudiant : ");
-    scanf("%s", nomRecherche);
-
-
-
+    //etudiant
     for (int i = 0; i < nombreEtudiant; i++) {
-        // Compare the searched name with the student's name
-        if (strcmp(etudiants[i].nom, nomRecherche) == 0) {
-            // Student found, display their information
-            printf("etudiant trouvee :\n");
-            printf("numero unique : %d\n", etudiants[i].nemuroUnique);
-            printf("prenom : %s\n", etudiants[i].prenom);
-            printf("Nom : %s\n", etudiants[i].nom);
-            printf("Date de naissance : %s\n", etudiants[i].date_Naissance);
-            printf("departement  : %s\n", etudiants[i].departement.nom);
-            printf("Note generale : %.2f\n", etudiants[i].departement.noteGenerale);
+        int found = 0;
 
-            etudiantTrouve = 1;
-            break;
+        // department
+        for (int j = 0; j < numDepartments; j++) {
+            if (strcmp(etudiants[i].departement.nom, departmentNames[j]) == 0) {
+                counts[j]++;
+                found = 1;
+                break;
+            }
+        }
+
+        // If !found , ajouter au liste
+        if (!found) {
+            strcpy(departmentNames[numDepartments], etudiants[i].departement.nom);
+            counts[numDepartments] = 1;
+            numDepartments++;
         }
     }
 
-    if (!etudiantTrouve) {
-        printf("etudiant avec le nom '%s' non trouvvee.\n", nomRecherche);
+    //
+    printf("Nombre etudiant pour chaque departm:\n");
+    for (int i = 0; i < numDepartments; i++) {
+        printf("%s : %d etuudiants \n", departmentNames[i], counts[i]);
+    }
+}
+
+void rechercheEtudiantparnom(){
+
+char  nomrecherer[100];
+    int  etudiantTrouve =0;
+
+    printf("Entrez le nom rechercher : ");
+    scanf("%s", nomrecherer);
+
+    for (int i = 0; i < nombreEtudiant; i++) {
+          if (strcmp(etudiants[i].nom, nomrecherer) == 0) {
+            printf("numero Unique : %d\n", etudiants[i].nemuroUnique);
+        printf("prenom : %s\n", etudiants[i].prenom);
+        printf("Nom : %s\n", etudiants[i].nom);
+        printf("Date de Naissance : %s\n", etudiants[i].date_Naissance);
+        printf("DEPARTEMENT : %s\n", etudiants[i].departement.nom);
+        printf("Note genera : %.2f\n", etudiants[i].departement.noteGenerale);
+           etudiantTrouve=1;
+             break;
+
+
+}
+
+    }
+
+if (!etudiantTrouve) {
+        printf(" %s non trouvee.\n", nomrecherer);
     }
 }
 
 
 
-
-
-
-
-
 #endif // FUNCTION_H_INCLUDED
-
-
-
-
-
-
-
-
