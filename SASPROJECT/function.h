@@ -242,22 +242,50 @@ void afficheEtudiantParDepartement() {
     }
 }
 
- /*
-void affichEtudiantseiul(float seuil) {
-    printf("etudiant a moy genrale superieur >= %.2f :\n", seuil);
-    for (int i = 0; i < nombreEtudiant; i++) {
-        float moyenne = 0;
-        for (int j = 0; j < etudiants[i].nombreDepartements; j++) {
-            moyenne += etudiants[i].departements[j].noteGenerale;
-        }
-        moyenne /= etudiants[i].nombreDepartements;
 
-        if (moyenne > seuil) {
-            printf("nom : %s, prenom : %s, Moyenne : %.2f\n", etudiants[i].nom, etudiants[i].prenom, moyenne);
+void affichEtudiantseiul(float seuil) {
+    printf("etudiabt avec moyenne general >=  %.2f :\n", seuil);
+
+    for (int i = 0; i < nombreEtudiant; i++) {
+         float moyenne = etudiants[i].departement.noteGenerale;
+
+        if (moyenne >= seuil) {
+            printf("Nom : %s, prenom : %s, Moyenne : %.2f\n", etudiants[i].nom, etudiants[i].prenom, moyenne);
         }
     }
 }
-*/
+
+void affichertroisMeilleuresnotes(){
+
+
+for (int i=0;i<nombreEtudiant-1;i++){
+
+    for (int j=0;nombreEtudiant-i-1;i++){
+
+        if (etudiants[j].departement.noteGenerale<etudiants[j+1].departement.noteGenerale){
+
+            struct Etudiant valeur=etudiants[j];
+                            etudiants[j]=etudiants[j+1];
+                            etudiants[j+1]=valeur;
+
+
+        }
+
+
+    }
+
+
+
+
+}
+ int top=nombreEtudiant < 3 ? nombreEtudiant : 3;
+      printf(" les etudiants %d",top);
+
+ for (int i=0;i<top;i++){
+        printf("%s prenom et %s nom et %f ",etudiants[i].prenom,etudiants[i].nom,etudiants[i].departement.noteGenerale);
+    }
+}
+
 void statistiques() {
     int choix;
     float seuil;
@@ -265,6 +293,7 @@ void statistiques() {
     printf("1 :  afficha   nombre total etudiant inscrits\n");
     printf("2 : Afficher   nombre etudiant dans chaque departement.\n");
     printf("3 : Afficher   etudiant ayant une moyenne genera superieur A un certain seuil\n");
+    printf("4 : Afficher les 3 etudiants ayant les meilleures notes.\n");
     printf("Choisissez une option : ");
     scanf("%d", &choix);
 
@@ -275,14 +304,17 @@ void statistiques() {
         case 2:
             afficheEudianpardepartmant();
             break;
-            /*
+
         case 3:
             printf("  le seuil  ");
             scanf("%f", &seuil);
             affichEtudiantseiul(seuil);
             break;
+             case 4:
+            affichertroisMeilleuresnotes();
+            break;
 
-            */
+
 
         default:
             printf("Option invalide.\n");
