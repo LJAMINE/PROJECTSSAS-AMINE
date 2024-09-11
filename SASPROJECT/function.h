@@ -255,6 +255,8 @@ void affichEtudiantseiul(float seuil) {
     }
 }
 
+
+
 void affichertroisMeilleuresnotes() {
     // tri a bulle methode
     for (int i = 0; i < nombreEtudiant - 1; i++) {
@@ -278,6 +280,9 @@ void affichertroisMeilleuresnotes() {
                etudiants[i].departement.noteGenerale);
     }
 }
+
+
+
 
 void afficheEtudiantReeussiPardepartemnt() {
     int counts[MAX_DEPARTMENTS] = {0};
@@ -474,13 +479,13 @@ void triDesEtudiants(){
        case 2:
              triEtudiantmoyenneGenerale();
             break;
-  /*
+
         case 3:
 
-            tridesEtudiantsReussite( );
+            tridesEtudiantsReussite();
             break;
 
-*/
+
         default:
             printf("Option invalide.\n");
             break;
@@ -538,5 +543,33 @@ for(i=0;i<nombreEtudiant;i++){
 
 }
 
+
+void tridesEtudiantsReussite(){
+ struct Etudiant valeur[10];
+  int i,j;
+   for (i = 0 ; i< nombreEtudiant-1 ; i++)
+    {
+        for(j=i+1 ; j<nombreEtudiant ;j++)
+        {
+            if( (etudiants[i].departement.noteGenerale)<10   && (etudiants[j].departement.noteGenerale)>=10 )
+            {
+                valeur[i]=etudiants[i] ;
+                etudiants[i]=etudiants[j];
+                etudiants[j] = valeur[i];
+            }
+
+        }
+
+}
+
+printf("liste etudiant selon status reussite\n");
+
+for(i=0;i<nombreEtudiant;i++){
+
+    printf("nom est %s et prenom est %s et Moyenne Generale %.2f  ,%s\n",etudiants[i].nom,etudiants[i].prenom,etudiants[i].departement.noteGenerale,etudiants[i].departement.noteGenerale >=10?"reussi":"echoue");
+}
+
+
+}
 
 #endif // FUNCTION_H_INCLUDED
