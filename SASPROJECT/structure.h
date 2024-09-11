@@ -14,7 +14,6 @@ int  nemuroUnique ;
  char nom[100];
  char prenom[100];
  char date_Naissance[100];
- float noteGenerale;
   int nombreDepartements;
   struct Departement departement;
   };

@@ -23,8 +23,11 @@ int choix;
         printf(" 4 : supprimerEtudiant                                             |\n");
         printf(" 5 :  moyenneGenerale  .                                           |\n");
         printf(" 6 : statistiques.                                                      |\n");
-        printf(" 7 : rechercheEtudiantparnom.                                                      |\n");
-        printf(" 8 : quitter.                                                      |\n");
+        printf(" 7 : rechercheEtudiantparnom.                                           |\n");
+        printf(" 8 : listeEtudiantInscritdansdepartement.                               |\n");
+
+
+        printf(" 9 : quitter.                                                      |\n");
 
 
             printf("\nChoisir une option : ");
@@ -61,6 +64,9 @@ int choix;
 
          case 7 :
              rechercheEtudiantparnom();
+    break;
+      case 8 :
+             listeEtudiantInscritdansdepartement();
     break;
 
 

@@ -397,7 +397,7 @@ void afficheEudianpardepartmant() {
 
 void rechercheEtudiantparnom(){
 
-char  nomrecherer[100];
+char nomrecherer[100];
     int  etudiantTrouve =0;
 
     printf("Entrez le nom rechercher : ");
@@ -424,6 +424,35 @@ if (!etudiantTrouve) {
     }
 }
 
+void listeEtudiantInscritdansdepartement(){
+char nomDepartement[100];
+    int  etudiantTrouve =0;
 
+    printf("Entrez le nom de departemant : ");
+    scanf("%s", nomDepartement);
+
+        printf("Liste des etudiants inscrits dans le departement %s :\n", nomDepartement);
+
+
+    for (int i = 0; i < nombreEtudiant; i++) {
+          if (strcmp(etudiants[i].departement.nom, nomDepartement) == 0) {
+            printf("numero Unique : %d\n", etudiants[i].nemuroUnique);
+        printf("prenom : %s\n", etudiants[i].prenom);
+        printf("Nom : %s\n", etudiants[i].nom);
+        printf("Date de Naissance : %s\n", etudiants[i].date_Naissance);
+        printf("Note genera : %.2f\n", etudiants[i].departement.noteGenerale);
+           etudiantTrouve=1;
+
+}
+
+    }
+
+if (!etudiantTrouve) {
+        printf(" %s non trouvee.\n", nomDepartement);
+    }
+
+
+
+}
 
 #endif // FUNCTION_H_INCLUDED
