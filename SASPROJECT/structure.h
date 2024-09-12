@@ -2,18 +2,20 @@
 #define STRUCTURE_H_INCLUDED
 
 #define MAX_DEPARTMENTS 5
+#define MAX_ETUDIANTS 5
 
 
 
-struct Departement {
+
+typedef struct Departement {
     char nom[50];
     float noteGenerale;
 };
 typedef struct Etudiant{
 int  nemuroUnique ;
  char nom[100];
- char prenom[100];
- char date_Naissance[100];
+  char prenom[100];
+  char date_Naissance[100];
   int nombreDepartements;
   struct Departement departement;
   };

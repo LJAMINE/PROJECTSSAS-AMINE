@@ -3,6 +3,8 @@
 #include <string.h>
 #include "structure.h"
 #include "function.h"
+//#include "hepers.h"
+
 
 
 //new commit
@@ -11,26 +13,26 @@ int main()
 int choix;
 
   do{
-        printf("| |         BIENVENUE A VOTRE ESPACE ETUDIANTS                      |     |\n");
-        printf("| -----------------------------------------------------------      |\n");
-        printf("| -----------------------------------------------------------      |\n");
+        printf("| |         BIENVENUE A VOTRE ESPACE ETUDIANTS                            |\n");
+        printf("| ----------------------------------------------------------- ------------|\n");
+        printf("| -----------------------------------------------------------             |\n");
 
-        printf("| |--------------[ menu principal]-----------------|               |\n");
+        printf("| |--------------[ menu principal]-------------------------- ------------ |\n");
 
-        printf(" 1 :ajoute Etudiant.                                                |\n");
-        printf(" 2 : afficher Etudiant                                         .   |\n");
-        printf(" 3 :modifier  etudiant .                                          |\n");
-        printf(" 4 : supprimerEtudiant                                             |\n");
-        printf(" 5 :  moyenneGenerale  .                                           |\n");
-        printf(" 6 : statistiques.                                                      |\n");
-        printf(" 7 : rechercheEtudiantparnom.                                           |\n");
-        printf(" 8 : listeEtudiantInscritdansdepartement.                               |\n");
-         printf(" 9 : triDesEtudiants.                               |\n");
+        printf(" 1 :  ajoute Etudiant.                                                    |\n");
+        printf(" 2 :  afficher Etudiant                                         .         |\n");
+        printf(" 3 :  modifier etudiant .                                                 |\n");
+        printf(" 4 :  supprimer Etudiant                                                  |\n");
+        printf(" 5 :  moyenneG enerale  .                                                 |\n");
+        printf(" 6 :  statistiques.                                                       |\n");
+        printf(" 7 :  recherche Etudiant par nom.                                         |\n");
+        printf(" 8 :  liste Etudiant Inscrit dans departement.                            |\n");
+        printf(" 9 : tri Des Etudiants.                                                   |\n");
 
-        printf(" 10 : quitter.                                                      |\n");
+        printf(" 10 : quitter.                                                            |\n");
 
 
-            printf("\nChoisir une option : ");
+            printf("\nChoisir une option :                                                |\n");
             scanf("%d",&choix);
 
     switch(choix)

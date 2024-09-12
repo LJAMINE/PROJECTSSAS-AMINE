@@ -1,12 +1,14 @@
 # depslib dependency file v1.0
-1726088356 source:c:\users\lenovo\desktop\please\sasproject\main.c
+1726172883 source:c:\users\lenovo\desktop\please\sasproject\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"structure.h"
 	"function.h"
 
-1726086621 c:\users\lenovo\desktop\please\sasproject\structure.h
+1726173252 c:\users\lenovo\desktop\please\sasproject\structure.h
 
-1726093928 c:\users\lenovo\desktop\please\sasproject\function.h
+1726176185 c:\users\lenovo\desktop\please\sasproject\function.h
+
+1726164875 c:\users\lenovo\desktop\please\sasproject\hepers.h
 
